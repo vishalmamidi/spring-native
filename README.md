@@ -15,5 +15,9 @@ Memory when scaling
 
 
 ```bash
+./gradlew bootBuildImage
+```
 
+```bash
+docker run --rm -p 8080:8080 spring-native:0.0.1-SNAPSHOT
 ```

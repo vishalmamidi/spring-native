@@ -27,3 +27,14 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.named('bootBuildImage') {
+	def containerImageName = System.getenv("IMAGE_NAME") ?: "ghcr.io/vishalmamidi/${rootProject.name}"
+	def containerTags      = System.getenv("IMAGE_TAGS") ?: "latest"
+
+	// Set Image Properties
+	imageName = containerImageName
+	tags = (containerTags.split(",") as List).collect { containerImageName + ":" + it }
+	builder = "paketobuildpacks/builder:tiny"
+	createdDate = "now"
+}
